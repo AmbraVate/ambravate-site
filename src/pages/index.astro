@@ -1,16 +1,27 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
 ---
+<BaseLayout
+  title="Technology Solutions"
+  description="Software, automation, and education delivered through a unified technology ecosystem."
+>
+  <Header />
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+  <section>
+    <h1>Technology Solutions That Build, Scale, and Educate</h1>
+    <p>
+      AmbraVate delivers software, automation, and technology education through a
+      focused ecosystem of specialist divisions.
+    </p>
+  </section>
+
+  <section>
+    <h2>Our Divisions</h2>
+    <ul>
+      <li>AmbraVate Software Solutions</li>
+      <li>AmbraVate Academy</li>
+      <li>AmbraVate Games</li>
+    </ul>
+  </section>
+</BaseLayout>
