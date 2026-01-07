@@ -1,4 +1,5 @@
 ---
+import '../styles/global.css';
 const { title, description } = Astro.props;
 ---
 <!doctype html>
@@ -8,7 +9,6 @@ const { title, description } = Astro.props;
     <title>{title} | AmbraVate</title>
     <meta name="description" content={description ?? 'Technology solutions that build, scale, and educate.'} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/styles/global.css" />
   </head>
   <body>
     <slot />
