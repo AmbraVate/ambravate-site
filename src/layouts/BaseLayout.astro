@@ -1,16 +1,33 @@
 ---
-import '../styles/global.css';
-const { title, description } = Astro.props;
+import "../assets/styles/global.css";
+import { LiquidGradientBackground } from "../components/LiquidGradientBackground";
+
+const {
+  title = "Home",
+  description = "Technology solutions that build, scale, and educate.",
+} = Astro.props;
+
 ---
+
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
     <title>{title} | AmbraVate</title>
-    <meta name="description" content={description ?? 'Technology solutions that build, scale, and educate.'} />
+    <meta
+      name="description"
+      content={description ?? 'Technology solutions that build, scale, and educate.'}
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <slot name="head" />
   </head>
-  <body>
-    <slot />
+
+  <body class="relative overflow-x-hidden">
+     <LiquidGradientBackground client:only="react" />
+
+     <div class="relative z-10">
+      <slot />
+     </div>
+  
   </body>
 </html>

@@ -1,27 +1,12 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
+// src/pages/index.astro
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { HeroSection } from "../components/hero/HeroSection";
 ---
+
 <BaseLayout
-  title="Technology Solutions"
-  description="Software, automation, and education delivered through a unified technology ecosystem."
->
-  <Header />
-
-  <section>
-    <h1>Technology Solutions That Build, Scale, and Educate</h1>
-    <p>
-      AmbraVate delivers software, automation, and technology education through a
-      focused ecosystem of specialist divisions.
-    </p>
-  </section>
-
-  <section>
-    <h2>Our Divisions</h2>
-    <ul>
-      <li>AmbraVate Software Solutions</li>
-      <li>AmbraVate Academy</li>
-      <li>AmbraVate Games</li>
-    </ul>
-  </section>
+  title="Home"
+  description="Aligning technology, process, and people to solve problems intelligently."
+  >
+  <HeroSection client:load />
 </BaseLayout>

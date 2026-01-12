@@ -9,7 +9,18 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^4.4.2",
     "@astrojs/sitemap": "^3.6.1",
-    "astro": "^5.16.7"
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^5.16.7",
+    "gsap": "^3.14.2",
+    "lucide-react": "^0.562.0",
+    "motion": "^12.25.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.8",
+    "@types/react-dom": "^19.2.3"
   }
 }
