@@ -23,9 +23,8 @@ const {
     <slot name="head" />
   </head>
 
-  <body class="relative overflow-x-hidden">
+  <body class="relative overflow-x-hidden" style="scroll-behavior: smooth; scroll-snap-type: y mandatory; height: 100vh; overflow-y: scroll;">
      <LiquidGradientBackground client:only="react" />
-     <AnimatedHeader client:only="react" />
 
      <div class="relative z-10">
       <slot />

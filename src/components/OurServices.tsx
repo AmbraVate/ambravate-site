@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion, useScroll } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import { useRef, useEffect, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
@@ -134,7 +134,7 @@ function ContentBlock({ title, description, image }: ContentBlockProps) {
   return <Card title={title} description={description} image={image} />;
 }
 
-export function WhoWeAre() {
+export function OurServices() {
   const { ref: containerRef, inView } = useInView({
     threshold: 0.5,
   });
@@ -148,31 +148,33 @@ export function WhoWeAre() {
     setShowMenuBar(inView);
   }, [inView]);
 
-  const contentBlocks = [
+  const serviceBlocks = [
     {
-      title: 'Our Mission',
-      description:
-        'AmbraVate exists to turn bold ideas into reality. We\'re building a world where businesses and people have the tools they need to solve problems that matter. Through smart technology, streamlined workflows, and talented humans working in sync, we make the complex feel simple.',
-      image: '/src/assets/images/mission.png',
+      title: 'Game Development',
+      description: 'Creating immersive gaming experiences with cutting-edge technology and creative storytelling.',
+      image: '/src/assets/images/gamedev.png',
     },
     {
-      title: 'Our Experience',
-      description:
-        'AmbraVate has been at the forefront of software innovation, digital entertainment, and education. We\'ve shipped products, built communities, and learned what actually works in the real world. Our team brings battle-tested expertise and fresh perspectives that make a real difference.',
-      image: '/src/assets/images/experience.jpg',
+      title: 'Software Development',
+      description: 'Building robust, scalable applications tailored to your business needs and goals.',
+      image: '/src/assets/images/software.png',
     },
     {
-      title: 'Our Approach',
-      description:
-        'At AmbraVate, we believe in the power of aligned systems. Our approach integrates cutting-edge technology with streamlined processes and empowered people to create solutions that don\'t just work—they excel.',
-      image: '/src/assets/images/approach.png',
+      title: 'Education',
+      description: 'Empowering teams and individuals through comprehensive training and knowledge transfer.',
+      image: '/src/assets/images/education.png',
+    },
+    {
+      title: 'Click for More',
+      description: 'Explore our full range of services and discover how we can help your business thrive.',
+      image: '',
     },
   ];
 
   return (
     <>
       <LogoHeader 
-        sectionTitle="Who We Are"
+        sectionTitle="Our Services"
         isVisible={isLogoVisible}
         showMenuBar={showMenuBar}
       />
@@ -181,7 +183,7 @@ export function WhoWeAre() {
         <div className="max-w-7xl mx-auto w-full">
           {/* Cards Grid */}
           <div className="flex gap-8 items-stretch">
-            {contentBlocks.map((block, index) => (
+            {serviceBlocks.map((block, index) => (
               <ContentBlock
                 key={index}
                 title={block.title}
@@ -200,7 +202,7 @@ export function WhoWeAre() {
           transition={{ duration: 1, delay: 1.4 }}
         >
            <p className="text-sm md:text-base text-[#FF6B00] tracking-widest uppercase font-medium">
-           Our Services
+            Contact Us
           </p>
         <motion.div
             animate={{ y: [0, 10, 0] }}

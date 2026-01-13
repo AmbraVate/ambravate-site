@@ -28,35 +28,42 @@ export function HeroSection({ onScrollClick }: HeroSectionProps) {
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col items-center justify-center relative">
-      {/* Main Content */}
+    <div className="h-screen w-screen flex flex-col items-center justify-between relative py-12" style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
+      {/* Top Third - Title */}
       <motion.div
-        className="flex flex-col items-center justify-center gap-6 px-8 max-w-5xl"
+        className="flex-1 flex items-center justify-center"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        {/* Title */}
         <motion.div variants={itemVariants}>
           <h1 className="text-7xl md:text-9xl font-bold tracking-tighter">
             <span className="text-[#FF6B00]">A</span>
-            <span className="text-black dark:text-white">mbra</span>
+            <span className="text-white">mbra</span>
             <span className="text-[#FF6B00]">V</span>
-            <span className="text-black dark:text-white">ate</span>
+            <span className="text-white">ate</span>
           </h1>
         </motion.div>
+      </motion.div>
 
+      {/* Middle Third - Tagline and Subtitle */}
+      <motion.div
+        className="flex-1 flex flex-col items-center justify-center gap-6 px-8"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         {/* Secondary Tagline */}
         <motion.div variants={itemVariants}>
           <p className="text-lg md:text-xl text-[#FF6B00] font-semibold tracking-wide uppercase">
-            Technology • Process • People
+            Technology | Process | People
           </p>
         </motion.div>
 
         {/* Main Subtitle */}
-        <motion.div variants={itemVariants} className="max-w-4xl px-4 py-2">
+        <motion.div variants={itemVariants} className="max-w-3xl px-8 py-6">
           <motion.p
-            className="text-2xl md:text-4xl text-center font-bold leading-relaxed"
+            className="text-3xl md:text-5xl text-center font-bold"
             style={{
               backgroundImage:
                 'linear-gradient(90deg, #ffffff 0%, #FF6B00 25%, #ffffff 50%, #FF6B00 75%, #ffffff 100%)',
@@ -64,6 +71,7 @@ export function HeroSection({ onScrollClick }: HeroSectionProps) {
               WebkitBackgroundClip: 'text',
               backgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
+              lineHeight: '1.4',
             }}
             animate={{ backgroundPosition: ['0% 0%', '200% 0%'] }}
             transition={{
@@ -75,30 +83,38 @@ export function HeroSection({ onScrollClick }: HeroSectionProps) {
             Solving Problems Intelligently
           </motion.p>
         </motion.div>
+      </motion.div>
 
+      {/* Bottom Third - Description and Scroll Indicator */}
+      <motion.div
+        className="flex-1 flex flex-col items-center justify-between gap-8 px-8"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         {/* Description */}
         <motion.div variants={itemVariants} className="max-w-2xl">
           <p className="text-lg md:text-xl text-center text-gray-300 leading-relaxed">
             An integrated platform powering innovation across technology solutions, digital entertainment, and educational excellence
           </p>
         </motion.div>
-      </motion.div>
 
-      {/* Scroll Indicator - Bottom */}
-      <motion.div
-        className="absolute bottom-12 flex flex-col items-center gap-2 cursor-pointer group"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 1.4 }}
-      >
-        <p className="text-sm md:text-base text-[#FF6B00] tracking-widest uppercase font-medium">
-          Discover More
-        </p>
+        {/* Scroll Indicator */}
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="flex flex-col items-center gap-2 group"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.4 }}
         >
-          <ChevronDown className="w-6 h-6 text-[#FF6B00]" />
+          <p className="text-sm md:text-base text-[#FF6B00] tracking-widest uppercase font-medium">
+            Discover More
+          </p>
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <ChevronDown className="w-6 h-6 text-[#FF6B00]" />
+          </motion.div>
         </motion.div>
       </motion.div>
     </div>
