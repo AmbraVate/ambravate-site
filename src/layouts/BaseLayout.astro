@@ -1,6 +1,7 @@
 ---
 import "../assets/styles/global.css";
 import { LiquidGradientBackground } from "../components/LiquidGradientBackground";
+import { AnimatedHeader } from "../components/AnimatedHeader";
 
 const {
   title = "Home",
@@ -24,6 +25,7 @@ const {
 
   <body class="relative overflow-x-hidden">
      <LiquidGradientBackground client:only="react" />
+     <AnimatedHeader client:only="react" />
 
      <div class="relative z-10">
       <slot />

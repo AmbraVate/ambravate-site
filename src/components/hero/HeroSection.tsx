@@ -1,7 +1,6 @@
 // src/components/hero/HeroSection.tsx
 import { motion } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
-import { CTAButton } from '../CTAButton';
 
 interface HeroSectionProps {
   onScrollClick?: () => void;
@@ -55,7 +54,7 @@ export function HeroSection({ onScrollClick }: HeroSectionProps) {
         </motion.div>
 
         {/* Main Subtitle */}
-        <motion.div variants={itemVariants} className="max-w-4xl">
+        <motion.div variants={itemVariants} className="max-w-4xl px-4 py-2">
           <motion.p
             className="text-2xl md:text-4xl text-center font-bold leading-relaxed"
             style={{
@@ -83,14 +82,6 @@ export function HeroSection({ onScrollClick }: HeroSectionProps) {
             An integrated platform powering innovation across technology solutions, digital entertainment, and educational excellence
           </p>
         </motion.div>
-
-        {/* CTA Button */}
-        <motion.div
-          variants={itemVariants}
-          className="mt-8"
-        >
-          <CTAButton onClick={onScrollClick} />
-        </motion.div>
       </motion.div>
 
       {/* Scroll Indicator - Bottom */}
@@ -100,6 +91,9 @@ export function HeroSection({ onScrollClick }: HeroSectionProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1.4 }}
       >
+        <p className="text-sm md:text-base text-[#FF6B00] tracking-widest uppercase font-medium">
+          Discover More
+        </p>
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}

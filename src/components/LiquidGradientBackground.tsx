@@ -1,40 +1,54 @@
-import { useEffect, useRef } from "react";
+import { motion } from "motion/react";
 
 export function LiquidGradientBackground() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      video.play().catch(err => console.error("Video play error:", err));
-    }
-  }, []);
-
   return (
-    <video
-      ref={videoRef}
-      autoPlay
-      loop
-      muted
-      playsInline
+    <div
       style={{
         position: "fixed",
         top: 0,
         left: 0,
         width: "100%",
         height: "100%",
-        objectFit: "cover",
         zIndex: -1,
         pointerEvents: "none",
-        opacity: 0.65,
+        overflow: "hidden",
       }}
       aria-hidden="true"
-      onLoadStart={() => console.log("Video loading")}
-      onCanPlay={() => console.log("Video can play")}
-      onError={(e) => console.error("Video error:", e)}
     >
-      <source src="./src/assets/videos/background.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+      {/* Animated gradient background */}
+      <motion.div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "200%",
+          height: "200%",
+          background: "linear-gradient(-45deg, #3d1c6d 0%, #1a2f5a 25%, #3d1c6d 50%, #1a2f5a 75%, #3d1c6d 100%)",
+          backgroundSize: "200% 200%",
+        }}
+        animate={{
+          backgroundPosition: ["0% 0%", "100% 100%"],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "linear",
+        }}
+      />
+
+      {/* Blur overlay for smoothness */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backdropFilter: "blur(80px)",
+          pointerEvents: "none",
+        }}
+      />
+    </div>
   );
 }

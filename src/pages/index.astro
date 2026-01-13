@@ -2,6 +2,7 @@
 // src/pages/index.astro
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { HeroSection } from "../components/hero/HeroSection";
+import { WhoWeAre } from "../components/WhoWeAre";
 ---
 
 <BaseLayout
@@ -9,4 +10,5 @@ import { HeroSection } from "../components/hero/HeroSection";
   description="Aligning technology, process, and people to solve problems intelligently."
   >
   <HeroSection client:load />
+  <WhoWeAre client:load />
 </BaseLayout>
