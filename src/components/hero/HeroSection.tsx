@@ -6,7 +6,7 @@ interface HeroSectionProps {
   onScrollClick?: () => void;
 }
 
-export function HeroSection({ onScrollClick }: HeroSectionProps) {
+export function HeroSection({ }: HeroSectionProps) {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {

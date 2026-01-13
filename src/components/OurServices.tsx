@@ -28,7 +28,7 @@ function LogoHeader({ sectionTitle, isVisible, showMenuBar }: LogoHeaderProps) {
         }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
         style={{
-          backgroundImage: 'url(/src/assets/images/logo.jpg)',
+          backgroundImage: 'url(/assets/images/logo.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -152,22 +152,22 @@ export function OurServices() {
     {
       title: 'Game Development',
       description: 'Creating immersive gaming experiences with cutting-edge technology and creative storytelling.',
-      image: '/src/assets/images/gamedev.png',
+      image: '/assets/images/gamedev.png',
     },
     {
       title: 'Software Development',
       description: 'Building robust, scalable applications tailored to your business needs and goals.',
-      image: '/src/assets/images/software.png',
+      image: '/assets/images/software.png',
     },
     {
       title: 'Education',
       description: 'Empowering teams and individuals through comprehensive training and knowledge transfer.',
-      image: '/src/assets/images/education.png',
+      image: '/assets/images/education.png',
     },
     {
       title: 'Click for More',
       description: 'Explore our full range of services and discover how we can help your business thrive.',
-      image: '',
+      image: '/assets/images/more.jpg',
     },
   ];
 

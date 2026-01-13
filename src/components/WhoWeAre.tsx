@@ -28,7 +28,7 @@ function LogoHeader({ sectionTitle, isVisible, showMenuBar }: LogoHeaderProps) {
         }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
         style={{
-          backgroundImage: 'url(/src/assets/images/logo.jpg)',
+          backgroundImage: 'url(/assets/images/logo.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -153,19 +153,19 @@ export function WhoWeAre() {
       title: 'Our Mission',
       description:
         'AmbraVate exists to turn bold ideas into reality. We\'re building a world where businesses and people have the tools they need to solve problems that matter. Through smart technology, streamlined workflows, and talented humans working in sync, we make the complex feel simple.',
-      image: '/src/assets/images/mission.png',
+      image: '/assets/images/mission.png',
     },
     {
       title: 'Our Experience',
       description:
         'AmbraVate has been at the forefront of software innovation, digital entertainment, and education. We\'ve shipped products, built communities, and learned what actually works in the real world. Our team brings battle-tested expertise and fresh perspectives that make a real difference.',
-      image: '/src/assets/images/experience.jpg',
+      image: '/assets/images/experience.jpg',
     },
     {
       title: 'Our Approach',
       description:
         'At AmbraVate, we believe in the power of aligned systems. Our approach integrates cutting-edge technology with streamlined processes and empowered people to create solutions that don\'t just work—they excel.',
-      image: '/src/assets/images/approach.png',
+      image: '/assets/images/approach.png',
     },
   ];
 
