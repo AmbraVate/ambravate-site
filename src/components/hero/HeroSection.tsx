@@ -37,7 +37,7 @@ export function HeroSection({ }: HeroSectionProps) {
         animate="visible"
       >
         <motion.div variants={itemVariants}>
-          <h1 className="text-7xl md:text-9xl font-bold tracking-tighter">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-bold tracking-tighter">
             <span className="text-[#FF6B00]">A</span>
             <span className="text-white">mbra</span>
             <span className="text-[#FF6B00]">V</span>
@@ -55,15 +55,15 @@ export function HeroSection({ }: HeroSectionProps) {
       >
         {/* Secondary Tagline */}
         <motion.div variants={itemVariants}>
-          <p className="text-lg md:text-xl text-[#FF6B00] font-semibold tracking-wide uppercase">
+          <p className="text-xs sm:text-sm md:text-lg lg:text-xl text-[#FF6B00] font-semibold tracking-wide uppercase">
             Technology | Process | People
           </p>
         </motion.div>
 
         {/* Main Subtitle */}
-        <motion.div variants={itemVariants} className="max-w-3xl px-8 py-6">
+        <motion.div variants={itemVariants} className="max-w-3xl px-4 sm:px-8 py-6">
           <motion.p
-            className="text-3xl md:text-5xl text-center font-bold"
+            className="text-lg sm:text-2xl md:text-3xl lg:text-5xl text-center font-bold"
             style={{
               backgroundImage:
                 'linear-gradient(90deg, #ffffff 0%, #FF6B00 25%, #ffffff 50%, #FF6B00 75%, #ffffff 100%)',
@@ -93,8 +93,8 @@ export function HeroSection({ }: HeroSectionProps) {
         animate="visible"
       >
         {/* Description */}
-        <motion.div variants={itemVariants} className="max-w-2xl">
-          <p className="text-lg md:text-xl text-center text-gray-300 leading-relaxed">
+        <motion.div variants={itemVariants} className="max-w-2xl px-4 sm:px-8">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-center text-gray-300 leading-relaxed">
             An integrated platform powering innovation across technology solutions, digital entertainment, and educational excellence
           </p>
         </motion.div>

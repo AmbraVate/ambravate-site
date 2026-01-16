@@ -26,7 +26,7 @@ function LogoHeader({ sectionTitle, isVisible, showMenuBar }: LogoHeaderProps) {
           x: isVisible ? 0 : '50vw', 
           y: isVisible ? 0 : '40vh' 
         }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
+        transition={{ duration: 0.5, ease: "easeIn" }}
         style={{
           backgroundImage: 'url(/assets/images/logo.jpg)',
           backgroundSize: 'cover',
@@ -72,7 +72,7 @@ function Card({ title, description, image }: CardProps) {
 
   return (
     <motion.div
-      className="relative overflow-hidden rounded-lg cursor-pointer flex-1 aspect-square"
+      className="relative overflow-hidden rounded-lg cursor-pointer aspect-square"
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       animate={{
@@ -103,7 +103,7 @@ function Card({ title, description, image }: CardProps) {
         }}
         transition={{ duration: 0.3 }}
       >
-        <h3 className="text-3xl md:text-4xl font-bold text-white text-center px-6">
+        <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white text-center px-4 sm:px-6">
           {title}
         </h3>
       </motion.div>
@@ -116,7 +116,7 @@ function Card({ title, description, image }: CardProps) {
         }}
         transition={{ duration: 0.3 }}
       >
-        <p className="text-lg text-gray-100 text-center leading-relaxed">
+        <p className="text-sm sm:text-base md:text-lg text-gray-100 text-center leading-relaxed">
           {description}
         </p>
       </motion.div>
@@ -177,10 +177,10 @@ export function WhoWeAre() {
         showMenuBar={showMenuBar}
       />
       
-      <section ref={containerRef} className="relative z-10 py-20 px-8 min-h-screen flex flex-col items-center justify-center" style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
+      <section ref={containerRef} className="relative z-10 py-20 px-4 sm:px-8 min-h-screen flex flex-col items-center justify-center" style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
         <div className="max-w-7xl mx-auto w-full">
           {/* Cards Grid */}
-          <div className="flex gap-8 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-stretch">
             {contentBlocks.map((block, index) => (
               <ContentBlock
                 key={index}
@@ -192,6 +192,11 @@ export function WhoWeAre() {
           </div>
         </div>
 
+        <motion.div
+        className="flex-1 flex flex-col items-center justify-between gap-8 px-8"
+        initial="hidden"
+        animate="visible"
+      >
         {/* Scroll Indicator */}
         <motion.div
           className="flex flex-col items-center gap-2 group"
@@ -199,16 +204,17 @@ export function WhoWeAre() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.4 }}
         >
-           <p className="text-sm md:text-base text-[#FF6B00] tracking-widest uppercase font-medium">
-           Our Services
+          <p className="text-sm md:text-base text-[#FF6B00] tracking-widest uppercase font-medium">
+            Contact Us
           </p>
-        <motion.div
+          <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
           >
             <ChevronDown className="w-6 h-6 text-[#FF6B00]" />
-            </motion.div>
-         </motion.div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
       </section>
     </>
   );
