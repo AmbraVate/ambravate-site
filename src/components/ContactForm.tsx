@@ -3,13 +3,10 @@ import { useInView } from 'react-intersection-observer';
 import { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
-export function ContactForm() {
-  const { ref: containerRef, inView } = useInView({
-    threshold: 0.3,
+export function ContactForm({ onEnter }: { onEnter: () => void }) {
+  const { ref, inView } = useInView({
+    threshold: 0.15,
   });
-
-  const [isLogoVisible, setIsLogoVisible] = useState(false);
-  const [showMenuBar, setShowMenuBar] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,8 +16,7 @@ export function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
-    setIsLogoVisible(inView);
-    setShowMenuBar(inView);
+    if (inView) onEnter();
   }, [inView]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -42,15 +38,22 @@ export function ContactForm() {
   };
 
   const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
+  hidden: {
+    opacity: 0,
+    y: 120,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: 'easeOut',
+      staggerChildren: 0.12,
+      delayChildren: 0.2,
     },
-  };
+  },
+};
+
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -63,7 +66,7 @@ export function ContactForm() {
 
   return (
     <section 
-      ref={containerRef} 
+      ref={ref} 
       className="relative z-10 min-h-screen w-screen flex flex-col items-center justify-center py-12 px-4 sm:px-8" 
       style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}
     >
@@ -71,7 +74,7 @@ export function ContactForm() {
         className="w-full max-w-4xl"
         variants={containerVariants}
         initial="hidden"
-        animate={isLogoVisible ? 'visible' : 'hidden'}
+        animate={inView ? 'visible' : 'hidden'}
       >
         {/* Header */}
         <motion.div variants={itemVariants} className="text-center mb-12 md:mb-16">

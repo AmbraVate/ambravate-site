@@ -1,18 +1,12 @@
 ---
-// src/pages/index.astro
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { HeroSection } from "../components/hero/HeroSection";
-import { WhoWeAre } from "../components/WhoWeAre";
-import { OurServices } from "../components/OurServices";
-import { ContactForm } from "../components/ContactForm";
+import { HomePage } from "../components/HomePage";
 ---
 
 <BaseLayout
   title="Home"
   description="Aligning technology, process, and people to solve problems intelligently."
-  >
-  <HeroSection client:load />
-  <WhoWeAre client:load />
-  <OurServices client:load />
-  <ContactForm client:load />
+>
+  <HomePage client:load />
 </BaseLayout>
+

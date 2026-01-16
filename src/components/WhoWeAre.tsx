@@ -2,64 +2,8 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import { useInView } from 'react-intersection-observer';
 import { useRef, useEffect, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import { useHoverCapable } from '../hooks/useHoverCapable';
 
-interface LogoHeaderProps {
-  sectionTitle: string;
-  isVisible: boolean;
-  showMenuBar: boolean;
-}
-
-function LogoHeader({ sectionTitle, isVisible, showMenuBar }: LogoHeaderProps) {
-  return (
-    <motion.div
-      className="fixed top-0 left-0 z-50 flex items-center"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: isVisible ? 1 : 0 }}
-      transition={{ duration: 0.6 }}
-    >
-      {/* Logo */}
-      <motion.div
-        className="w-20 h-20 bg-[#FF6B00] flex items-center justify-center flex-shrink-0 overflow-hidden"
-        initial={{ scale: 5, x: '50vw', y: '40vh' }}
-        animate={{ 
-          scale: isVisible ? 1 : 5, 
-          x: isVisible ? 0 : '50vw', 
-          y: isVisible ? 0 : '40vh' 
-        }}
-        transition={{ duration: 0.5, ease: "easeIn" }}
-        style={{
-          backgroundImage: 'url(/assets/images/logo.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-      </motion.div>
-
-      {/* Menu Bar with gradient */}
-      <motion.div
-        className="h-20 flex items-center pl-6 relative overflow-hidden"
-        initial={{ width: 0 }}
-        animate={{ width: showMenuBar ? '45vw' : 0 }}
-        transition={{ duration: 0.5, delay: showMenuBar ? 0 : 0 }}
-      >
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(to right, rgba(61, 28, 109, 0.6), rgba(26, 47, 90, 0.4), transparent)'
-          }}
-        />
-        <motion.h2 
-          className="text-2xl font-medium text-white relative z-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: showMenuBar ? 1 : 0 }}
-          transition={{ duration: 0.3, delay: showMenuBar ? 0.2 : 0 }}
-        >
-          {sectionTitle}
-        </motion.h2>
-      </motion.div>
-    </motion.div>
-  );
-}
 
 interface CardProps {
   title: string;
@@ -68,16 +12,19 @@ interface CardProps {
 }
 
 function Card({ title, description, image }: CardProps) {
-  const [isHovered, setIsHovered] = useState(false);
+  const canHover = useHoverCapable();
+  const [isActive, setIsActive] = useState(false);
+    const showDescription = canHover ? isActive : isActive;
 
   return (
     <motion.div
-      className="relative overflow-hidden rounded-lg cursor-pointer aspect-square"
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      animate={{
-        scale: isHovered ? 1.05 : 1,
+      className="relative overflow-hidden rounded-lg aspect-square"
+      onHoverStart={() =>canHover && setIsActive(true)}
+      onHoverEnd={() => canHover && setIsActive(false)}
+      onClick={() => {
+        if (!canHover) setIsActive(v => !v);
       }}
+      animate={{ scale: isActive ? 1.05 : 1 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
     >
       {/* Background Image */}
@@ -87,7 +34,7 @@ function Card({ title, description, image }: CardProps) {
           backgroundImage: `url(${image})`,
         }}
         animate={{
-          filter: isHovered ? 'blur(8px)' : 'blur(0px)',
+          filter: isActive ? 'blur(8px)' : 'blur(0px)',
         }}
         transition={{ duration: 0.3 }}
       >
@@ -99,20 +46,26 @@ function Card({ title, description, image }: CardProps) {
       <motion.div
         className="absolute inset-0 flex items-center justify-center"
         animate={{
-          opacity: isHovered ? 0 : 1,
+          opacity: isActive ? 0 : 1,
         }}
         transition={{ duration: 0.3 }}
       >
         <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white text-center px-4 sm:px-6">
           {title}
         </h3>
+
+        {!canHover && !isActive && (
+          <span className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs text-[#FF6B00]">
+            Tap to learn more
+          </span>
+        )}
       </motion.div>
 
       {/* Description - Hidden initially, shown on hover */}
       <motion.div
         className="absolute inset-0 flex items-center justify-center p-8"
         animate={{
-          opacity: isHovered ? 1 : 0,
+          opacity: isActive ? 1 : 0,
         }}
         transition={{ duration: 0.3 }}
       >
@@ -134,18 +87,16 @@ function ContentBlock({ title, description, image }: ContentBlockProps) {
   return <Card title={title} description={description} image={image} />;
 }
 
-export function WhoWeAre() {
-  const { ref: containerRef, inView } = useInView({
-    threshold: 0.5,
-  });
-
-  const [isLogoVisible, setIsLogoVisible] = useState(false);
-  const [showMenuBar, setShowMenuBar] = useState(false);
+export function WhoWeAre({ onEnter, onLeave }: {
+  onEnter: () => void;
+  onLeave: () => void;
+}) {
+  const { ref, inView } = useInView({ threshold: 0.6 });
 
   // Show logo header when section is in view
   useEffect(() => {
-    setIsLogoVisible(inView);
-    setShowMenuBar(inView);
+    if (inView) onEnter();
+    else onLeave();
   }, [inView]);
 
   const contentBlocks = [
@@ -171,41 +122,35 @@ export function WhoWeAre() {
 
   return (
     <>
-      <LogoHeader 
-        sectionTitle="Who We Are"
-        isVisible={isLogoVisible}
-        showMenuBar={showMenuBar}
-      />
-      
-      <section ref={containerRef} className="relative z-10 py-20 px-4 sm:px-8 min-h-screen flex flex-col items-center justify-center" style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}>
-        <div className="max-w-7xl mx-auto w-full">
-          {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-stretch">
-            {contentBlocks.map((block, index) => (
-              <ContentBlock
-                key={index}
-                title={block.title}
-                description={block.description}
-                image={block.image}
-              />
-            ))}
+      <section
+        ref={ref}
+        className="relative z-10 min-h-screen px-4 sm:px-8 flex flex-col justify-between"
+        style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}
+      >
+        <div className="flex-1 flex items-center">
+          <div className="max-w-7xl mx-auto w-full">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-stretch">
+              {contentBlocks.map((block, index) => (
+                <ContentBlock
+                  key={index}
+                  title={block.title}
+                  description={block.description}
+                  image={block.image}
+                />
+              ))}
+            </div>
           </div>
         </div>
 
+
         <motion.div
-        className="flex-1 flex flex-col items-center justify-between gap-8 px-8"
-        initial="hidden"
-        animate="visible"
-      >
-        {/* Scroll Indicator */}
-        <motion.div
-          className="flex flex-col items-center gap-2 group"
+          className="pb-12 flex flex-col items-center gap-2"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.4 }}
+          transition={{ duration: 1, delay: 1.2 }}
         >
           <p className="text-sm md:text-base text-[#FF6B00] tracking-widest uppercase font-medium">
-            Contact Us
+            Our Services
           </p>
           <motion.div
             animate={{ y: [0, 10, 0] }}
@@ -214,7 +159,7 @@ export function WhoWeAre() {
             <ChevronDown className="w-6 h-6 text-[#FF6B00]" />
           </motion.div>
         </motion.div>
-      </motion.div>
+
       </section>
     </>
   );
