@@ -116,7 +116,7 @@ export function OurServices({ onEnter, onLeave }: {
    
       <section
         ref={ref}
-        className="relative z-10 min-h-screen px-4 sm:px-8 flex flex-col justify-between"
+        className="relative z-10 min-h-screen px-4 sm:px-8 flex flex-col"
         style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}
       >
         <div className="flex-1 flex items-center">
@@ -136,7 +136,7 @@ export function OurServices({ onEnter, onLeave }: {
 
         {/* Scroll Indicator */}
         <motion.div
-          className="pb-12 flex flex-col items-center gap-2"
+          className="mt-12 sm:mt-20 pb-16 sm:pb-20 flex flex-col items-center gap-2"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.2 }}

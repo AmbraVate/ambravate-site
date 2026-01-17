@@ -94,7 +94,7 @@ export function ContactForm({ onEnter }: { onEnter: () => void }) {
               <Mail className="w-6 h-6 text-[#FF6B00]" />
               <h3 className="text-lg font-semibold text-white">Email</h3>
             </div>
-            <p className="text-gray-300 text-sm md:text-base">hello@ambravate.com</p>
+            <p className="text-gray-300 text-sm md:text-base">TBD</p>
           </motion.div>
 
           <motion.div variants={itemVariants} className="bg-black/30 backdrop-blur p-6 rounded-lg border border-[#FF6B00]/20">
@@ -102,7 +102,7 @@ export function ContactForm({ onEnter }: { onEnter: () => void }) {
               <Phone className="w-6 h-6 text-[#FF6B00]" />
               <h3 className="text-lg font-semibold text-white">Phone</h3>
             </div>
-            <p className="text-gray-300 text-sm md:text-base">+1 (555) 123-4567</p>
+            <p className="text-gray-300 text-sm md:text-base">TBD</p>
           </motion.div>
 
           <motion.div variants={itemVariants} className="bg-black/30 backdrop-blur p-6 rounded-lg border border-[#FF6B00]/20">

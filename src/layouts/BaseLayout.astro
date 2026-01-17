@@ -1,6 +1,7 @@
 ---
 import "../assets/styles/global.css";
 import { LiquidGradientBackground } from "../components/LiquidGradientBackground";
+import { SiteNoticeBanner } from "../components/SiteNoticeBanner";
 
 const {
   title = "Home",
@@ -22,12 +23,13 @@ const {
     <slot name="head" />
   </head>
 
-  <body class="relative overflow-x-hidden bg-black" style="scroll-behavior: smooth; scroll-snap-type: y mandatory;">
-     <LiquidGradientBackground client:only="react" />
+  <body class="relative overflow-x-hidden bg-black pt-12" style="scroll-behavior: smooth; scroll-snap-type: y mandatory;">
+    <SiteNoticeBanner client:load />
+    <LiquidGradientBackground client:only="react" />
 
-     <div class="relative z-10">
-      <slot />
-     </div>
+    <div class="relative z-10">
+    <slot />
+    </div>
   
   </body>
 </html>

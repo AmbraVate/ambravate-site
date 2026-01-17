@@ -14,11 +14,10 @@ interface CardProps {
 function Card({ title, description, image }: CardProps) {
   const canHover = useHoverCapable();
   const [isActive, setIsActive] = useState(false);
-    const showDescription = canHover ? isActive : isActive;
 
   return (
     <motion.div
-      className="relative overflow-hidden rounded-lg aspect-square"
+      className="relative overflow-hidden rounded-lg aspect-square cursor-pointer"
       onHoverStart={() =>canHover && setIsActive(true)}
       onHoverEnd={() => canHover && setIsActive(false)}
       onClick={() => {
@@ -39,7 +38,7 @@ function Card({ title, description, image }: CardProps) {
         transition={{ duration: 0.3 }}
       >
         {/* Overlay */}
-        <div className="w-full h-full bg-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
       </motion.div>
 
       {/* Title - Always visible initially */}
@@ -50,12 +49,28 @@ function Card({ title, description, image }: CardProps) {
         }}
         transition={{ duration: 0.3 }}
       >
-        <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white text-center px-4 sm:px-6">
+        <h3 className="
+          text-xl sm:text-2xl md:text-3xl lg:text-4xl
+          font-bold text-white text-center
+          px-6 py-3
+          rounded-md
+          bg-black/40
+          backdrop-blur-sm
+          md:bg-transparent md:backdrop-blur-0"
+        >
           {title}
         </h3>
 
         {!canHover && !isActive && (
-          <span className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs text-[#FF6B00]">
+          <span className="
+            absolute bottom-4 left-1/2 -translate-x-1/2
+            text-xs font-medium tracking-wide
+            text-white
+            bg-black/60
+            px-3 py-1
+            rounded-full
+            backdrop-blur-sm"
+          >
             Tap to learn more
           </span>
         )}
@@ -63,7 +78,10 @@ function Card({ title, description, image }: CardProps) {
 
       {/* Description - Hidden initially, shown on hover */}
       <motion.div
-        className="absolute inset-0 flex items-center justify-center p-8"
+        className="
+        absolute inset-0 flex items-center justify-center p-8
+        bg-black/60 md:bg-black/40
+        backdrop-blur-md"
         animate={{
           opacity: isActive ? 1 : 0,
         }}
@@ -93,7 +111,6 @@ export function WhoWeAre({ onEnter, onLeave }: {
 }) {
   const { ref, inView } = useInView({ threshold: 0.6 });
 
-  // Show logo header when section is in view
   useEffect(() => {
     if (inView) onEnter();
     else onLeave();
@@ -124,7 +141,7 @@ export function WhoWeAre({ onEnter, onLeave }: {
     <>
       <section
         ref={ref}
-        className="relative z-10 min-h-screen px-4 sm:px-8 flex flex-col justify-between"
+        className="relative z-10 min-h-screen px-4 sm:px-8 flex flex-col"
         style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}
       >
         <div className="flex-1 flex items-center">
@@ -143,8 +160,9 @@ export function WhoWeAre({ onEnter, onLeave }: {
         </div>
 
 
+        {/* Scroll Indicator */}
         <motion.div
-          className="pb-12 flex flex-col items-center gap-2"
+          className="mt-12 sm:mt-20 pb-16 sm:pb-20 flex flex-col items-center gap-2"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.2 }}
