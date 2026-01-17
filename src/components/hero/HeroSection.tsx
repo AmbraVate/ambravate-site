@@ -1,6 +1,6 @@
 // src/components/hero/HeroSection.tsx
 import { motion } from 'motion/react';
-import { ChevronDown } from 'lucide-react';
+import { Bold, ChevronDown } from 'lucide-react';
 
 interface HeroSectionProps {
   onScrollClick?: () => void;
@@ -95,7 +95,10 @@ export function HeroSection({ }: HeroSectionProps) {
         {/* Description */}
         <motion.div variants={itemVariants} className="max-w-2xl px-4 sm:px-8">
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-center text-gray-300 leading-relaxed">
-            An integrated platform powering innovation across technology solutions, digital entertainment, and educational excellence
+           We help organizations unlock growth through aligned Tech + Process + People.
+          </p>
+          <p className="mt-4 text-sm sm:text-base md:text-lg lg:text-xl text-center text-gray-300 leading-relaxed">
+             Trusted guidance to build scalable systems, teams, and products.
           </p>
         </motion.div>
 
